@@ -1,9 +1,12 @@
 package amldev.kotlinandroidonlinecourse
 
+import amldev.kotlinandroidonlinecourse.R.id.clearTextButton
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.TextView
-import android.widget.Toast
+import android.text.Editable
+import android.text.TextWatcher
+import android.widget.*
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -25,6 +28,36 @@ class MainActivity : AppCompatActivity() {
 
         //Asignarle un nuevo valor, cambiando el texto mediante código
         text.text = "Hello $yourName"
+
+        /***************************************************
+         * String templates, añade un EditText y vete modificando el mensaje del toas
+         * introduciendo nuevos valores
+         */
+
+        val editTextView = findViewById(R.id.inputValueEditText) as EditText
+        editTextView.addTextChangedListener(object : TextWatcher {
+
+            override fun afterTextChanged(s: Editable) {
+                if (editTextView.length() > 6) {
+                    toast(editTextView.text.toString())
+                }
+            }
+
+            override fun beforeTextChanged(s: CharSequence, start: Int,
+                                           count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence, start: Int,
+                                       before: Int, count: Int) {
+                println(editTextView.text)
+            }
+        })
+
+        val clearTextButton = findViewById(clearTextButton) as ImageButton
+
+        clearTextButton.setOnClickListener {
+            editTextView.text.clear()
+        }
     }
     /*
     Funcions Parte 1
