@@ -10,7 +10,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         toast("Anartz")
-        print("3 * 2 = ${getDuplicateInt(3)}")
+        println("3 * 2 = ${getDuplicateInt(3)}")
+        variableExamples()
     }
     /*
     Funcions Parte 1
@@ -30,4 +31,24 @@ class MainActivity : AppCompatActivity() {
      */
 
     private fun getDuplicateInt(inputNumber: Int) = 2 * inputNumber
+
+    // Variables, diferentes objectos de variable.
+
+    private fun variableExamples() {
+        val intBasicWithoutAssignType = 3
+        val intBasicWithAssignType : Int = 4
+        val longBasicWithoutAssignType = intBasicWithoutAssignType.toLong()
+        val longBasicWithAssignType: Long = 4L
+        val stringBasicWithoutAssignType = "Hello world!"
+        val stringBasicWithAssignType : String = "Test string"
+
+        println("*****************************************************************")
+        println("intBasicWithoutAssignType = $intBasicWithoutAssignType")
+        println("intBasicWithAssignType = $intBasicWithAssignType")
+        println("longBasicWithoutAssignType = $longBasicWithoutAssignType")
+        println("longBasicWithAssignType = $longBasicWithAssignType")
+        println("stringBasicWithoutAssignType = $stringBasicWithoutAssignType")
+        println("stringBasicWithAssignType = $stringBasicWithAssignType")
+        println("*****************************************************************")
+    }
 }
