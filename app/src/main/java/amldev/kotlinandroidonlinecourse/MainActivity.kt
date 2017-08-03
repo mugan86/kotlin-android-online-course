@@ -61,6 +61,9 @@ class MainActivity : AppCompatActivity() {
         clearTextButton.setOnClickListener {
             editTextView.text.clear()
         }
+
+        //Hace la llamada a la función test del fichero amldev.kotlinandroidonlinecourse.Test.kt
+        test()
     }
     /*
     Funcions Parte 1
