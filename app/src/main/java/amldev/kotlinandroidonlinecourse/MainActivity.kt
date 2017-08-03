@@ -1,6 +1,5 @@
 package amldev.kotlinandroidonlinecourse
 
-import amldev.kotlinandroidonlinecourse.R.id.clearTextButton
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
@@ -13,6 +12,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        //Usando una variable de otro fichero que no está en ninguna clase
+        println(myVar)
 
         val yourName = "Anartz"
         toast(yourName)
@@ -27,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         val text = findViewById(R.id.text) as TextView
 
         //Asignarle un nuevo valor, cambiando el texto mediante código
-        text.text = "Hello $yourName"
+        changeStartMsg(text, yourName)
 
         /***************************************************
          * String templates, añade un EditText y vete modificando el mensaje del toas
@@ -40,6 +42,7 @@ class MainActivity : AppCompatActivity() {
             override fun afterTextChanged(s: Editable) {
                 if (editTextView.length() > 6) {
                     toast(editTextView.text.toString())
+                    changeStartMsg(text, editTextView.text.toString())
                 }
             }
 
@@ -53,7 +56,7 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-        val clearTextButton = findViewById(clearTextButton) as ImageButton
+        val clearTextButton = findViewById(R.id.clearTextButton) as ImageButton
 
         clearTextButton.setOnClickListener {
             editTextView.text.clear()
@@ -65,6 +68,10 @@ class MainActivity : AppCompatActivity() {
     private fun toast (name: String) {
         // String templates - Uso en un string
         Toast.makeText(this, "Hola $name, ¿Qué tal estás?", Toast.LENGTH_LONG).show()
+    }
+
+    private fun changeStartMsg(text: TextView, yourName: String) {
+        text.text = "Hello $yourName"
     }
 
     /*
