@@ -2,6 +2,7 @@ package amldev.kotlinandroidonlinecourse
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.TextView
 import android.widget.Toast
 
 class MainActivity : AppCompatActivity() {
@@ -9,9 +10,21 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        toast("Anartz")
+
+        val yourName = "Anartz"
+        toast(yourName)
         println("3 * 2 = ${getDuplicateInt(3)}")
         variableExamples()
+
+        /**************************************************
+         * Ejercicio variables: Demuestra lo que has aprendido sobre variables.
+         * Recupera un TextView y cambia su texto por código.
+         ******************************************************/
+        //Recuperar el valor del textview que hemos añadido en el layout activity_main
+        val text = findViewById(R.id.text) as TextView
+
+        //Asignarle un nuevo valor, cambiando el texto mediante código
+        text.text = "Hello $yourName"
     }
     /*
     Funcions Parte 1
