@@ -30,7 +30,8 @@ class MainActivity : AppCompatActivity() {
     Funcions Parte 1
      */
     private fun toast (name: String) {
-        Toast.makeText(this, "Hola $name", Toast.LENGTH_LONG).show()
+        // String templates - Uso en un string
+        Toast.makeText(this, "Hola $name, ¿Qué tal estás?", Toast.LENGTH_LONG).show()
     }
 
     /*
