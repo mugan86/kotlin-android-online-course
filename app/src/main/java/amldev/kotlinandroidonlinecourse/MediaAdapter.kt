@@ -10,7 +10,7 @@ import android.view.ViewGroup
  * Recibe un listado de items para mostrarlo
  */
 
-class MediaItem
+data class MediaItem(val title: String, val thumbUrl: String)
 
 class MediaAdapter(val items: List<MediaItem>): RecyclerView.Adapter<MediaAdapter.ViewHolder>() {
     override fun getItemCount(): Int = items.size
