@@ -2,10 +2,11 @@ package amldev.kotlinandroidonlinecourse.ui.adapters
 
 import amldev.kotlinandroidonlinecourse.R
 import amldev.kotlinandroidonlinecourse.domain.models.MediaItem
-import amldev.kotlinandroidonlinecourse.ui.activities.Logger
+import amldev.kotlinandroidonlinecourse.extensions.inflate
+import amldev.kotlinandroidonlinecourse.extensions.toast
 import amldev.kotlinandroidonlinecourse.ui.holders.ViewHolder
+import amldev.kotlinandroidonlinecourse.ui.interfaces.Logger
 import android.support.v7.widget.RecyclerView
-import android.view.LayoutInflater
 import android.view.ViewGroup
 
 /**
@@ -17,13 +18,12 @@ class MediaAdapter(val items: List<MediaItem>): RecyclerView.Adapter<ViewHolder>
     override fun getItemCount(): Int = items.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        holder.toast("Create ViewHolder to render media items")
         holder.bind(items[position])
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val inflate = LayoutInflater.from(parent.context).inflate(R.layout.view_media_item, parent, false)
+        val inflate = parent.inflate(R.layout.view_media_item)
         return ViewHolder(inflate)
     }
-
-
 }
