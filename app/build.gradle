@@ -30,5 +30,7 @@ dependencies {
     compile "org.jetbrains.anko:anko-common:$anko_version"
     compile "com.android.support:appcompat-v7:$support_version"
     compile "com.android.support:design:$support_version"
+    compile "com.android.support:recyclerview-v7:$support_version"
     testCompile 'junit:junit:4.12'
+
 }
