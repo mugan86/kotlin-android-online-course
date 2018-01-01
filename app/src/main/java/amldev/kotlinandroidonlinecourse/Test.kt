@@ -60,7 +60,7 @@ class Developer(name: String) : PersonExtend(name, 20)
 //Otra manera de crear una clase con varios constructores
 
 class DeveloperTwo: PersonExtend {
-    constructor(age: Int): super (age)
+    constructor(age: Int): super (age = 20)
     constructor(name: String): super (name)
     constructor(name:String, age: Int) : super()
 }
