@@ -35,7 +35,7 @@ var myVar: String = "84"
 
 //Creamos una clase, se crea la clase con un constructor.
 //Por defecto la clase es cerrada
-class Person(name:String, age: Int) // NO se puede usar como padre para heredar
+data class Person(val name:String, val age: Int) // NO se puede usar como padre para heredar
 
 open class PersonExtend(name: String = "Anartz", val age: Int = 31) {// NO se puede usar como padre para heredar
     // Podemos añadirle valores por defecto para crear un objecto sin valores, cogiendo "Anartz" y 31 como datos
@@ -63,4 +63,11 @@ class DeveloperTwo: PersonExtend {
     constructor(age: Int): super (age = 20)
     constructor(name: String): super (name)
     constructor(name:String, age: Int) : super()
+}
+
+fun testList(lists: List<Person>) {
+    //Con desestructurización
+    for((name, age) in lists) {
+        println("Name: $name / Age: $age")
+    }
 }
