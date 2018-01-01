@@ -2,11 +2,13 @@ package amldev.kotlinandroidonlinecourse
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.widget.RecyclerView
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.widget.*
-
+import android.support.v7.widget.DefaultItemAnimator
+import android.support.v7.widget.LinearLayoutManager
 
 class MainActivity : AppCompatActivity(), Logger {
 
@@ -66,6 +68,31 @@ class MainActivity : AppCompatActivity(), Logger {
 
         //Hace la llamada a la función test del fichero amldev.kotlinandroidonlinecourse.Test.kt
         test()
+
+        loadList()
+    }
+
+    private fun loadList() {
+        val recyclerView = findViewById(R.id.recycler) as RecyclerView
+
+
+        val itemsData = listOf<MediaItem>(
+                MediaItem("Hesian: Zerotik", "https://i.ytimg.com/vi/E2lD-vp7n-I/maxresdefault.jpg", "G5SWPS9po74"),
+                MediaItem("Rev Theory - Hell Yeah", "https://i.ytimg.com/vi/XGLvPYexRJ4/maxresdefault.jpg", "7LuSP4QaXiQ"),
+                MediaItem("En Tol Sarmiento - Ametsetan", "http://entolsarmiento.com/wp-content/uploads/2014/11/portada.jpg", "LtDx3hb-KwI"),
+                MediaItem("Hesian: Zerotik", "https://i.ytimg.com/vi/E2lD-vp7n-I/maxresdefault.jpg", "G5SWPS9po74"),
+                MediaItem("Rev Theory - Hell Yeah", "https://i.ytimg.com/vi/XGLvPYexRJ4/maxresdefault.jpg", "7LuSP4QaXiQ"),
+                MediaItem("En Tol Sarmiento - Ametsetan", "http://entolsarmiento.com/wp-content/uploads/2014/11/portada.jpg", "LtDx3hb-KwI"))
+
+
+        // 2. set layoutManger
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        // 3. create an adapter
+        val mAdapter = MediaAdapter(itemsData)
+        // 4. set adapter
+        recyclerView.adapter = mAdapter
+        // 5. set item animator to DefaultAnimator
+        recyclerView.itemAnimator = DefaultItemAnimator()
     }
     /*
     Funcions Parte 1
