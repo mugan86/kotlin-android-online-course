@@ -9,6 +9,7 @@
     android:padding="2dp">
 
     <ImageView
+        android:scaleType="centerCrop"
         android:background="?android:selectableItemBackground"
         android:id="@+id/mediaItemImageView"
         android:layout_width="match_parent"
@@ -20,8 +21,9 @@
         android:id="@+id/mediaItemTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#333"
         android:padding="16dp"
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimary"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium.Inverse"
         tools:text="Title"/>
 
