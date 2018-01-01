@@ -4,10 +4,11 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.widget.*
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), Logger {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,6 +61,7 @@ class MainActivity : AppCompatActivity() {
 
         clearTextButton.setOnClickListener {
             editTextView.text.clear()
+            d("Clear value!!!")
         }
 
         //Hace la llamada a la función test del fichero amldev.kotlinandroidonlinecourse.Test.kt
@@ -108,4 +110,11 @@ class MainActivity : AppCompatActivity() {
         println("stringBasicWithAssignType = $stringBasicWithAssignType")
         println("*****************************************************************")
     }
+}
+
+interface Logger {
+    val tag: String
+        get() = javaClass.simpleName
+
+    fun d(message: String) = Log.d(tag, message)
 }
