@@ -2,7 +2,7 @@ package amldev.kotlinandroidonlinecourse.ui.interfaces
 
 import android.util.Log
 
-/**
+/**********
  * Created by anartzmugika on 1/1/18.
  */
 interface Logger {

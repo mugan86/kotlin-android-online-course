@@ -3,7 +3,6 @@ package amldev.kotlinandroidonlinecourse.ui.adapters
 import amldev.kotlinandroidonlinecourse.R
 import amldev.kotlinandroidonlinecourse.domain.models.MediaItem
 import amldev.kotlinandroidonlinecourse.extensions.inflate
-import amldev.kotlinandroidonlinecourse.extensions.toast
 import amldev.kotlinandroidonlinecourse.ui.holders.ViewHolder
 import amldev.kotlinandroidonlinecourse.ui.interfaces.Logger
 import android.support.v7.widget.RecyclerView
@@ -14,11 +13,13 @@ import android.view.ViewGroup
  * Recibe un listado de items para mostrarlo
  */
 
-class MediaAdapter(val items: List<MediaItem>): RecyclerView.Adapter<ViewHolder>(), Logger {
+class MediaAdapter(val items: List<MediaItem>, val listener: (MediaItem) -> Unit): RecyclerView.Adapter<ViewHolder>(), Logger {
     override fun getItemCount(): Int = items.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(items[position])
+        val item = items[position]
+        holder.bind(item)
+        holder.itemView.setOnClickListener { listener(item) }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
