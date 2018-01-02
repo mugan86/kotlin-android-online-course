@@ -1,8 +1,7 @@
 package amldev.kotlinandroidonlinecourse.ui.activities
 
 import amldev.kotlinandroidonlinecourse.R
-import amldev.kotlinandroidonlinecourse.data.itemsData
-import amldev.kotlinandroidonlinecourse.domain.models.MediaItem
+import amldev.kotlinandroidonlinecourse.data.getMediaItemsData
 import amldev.kotlinandroidonlinecourse.extensions.toast
 import amldev.kotlinandroidonlinecourse.ui.adapters.MediaAdapter
 import amldev.kotlinandroidonlinecourse.ui.interfaces.Logger
@@ -25,7 +24,7 @@ class MainActivity : AppCompatActivity(), Logger {
         // 1. set layoutManger
         recycler.layoutManager = LinearLayoutManager(this)
         // 2. create an adapter using GetMedia.kt data (root/data/GetMedia.kt)
-        val mAdapter = MediaAdapter(itemsData)
+        val mAdapter = MediaAdapter(getMediaItemsData())
         // 3. set adapter
         recycler.adapter = mAdapter
         // 4. set item animator to DefaultAnimator

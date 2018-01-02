@@ -6,7 +6,7 @@ import amldev.kotlinandroidonlinecourse.domain.models.MediaItem
  * Created by anartzmugika on 2/1/18.
  */
 // 1. Initialize Media Items
-val itemsData = listOf<MediaItem>(
+fun getMediaItemsData() = listOf<MediaItem>(
         MediaItem("System Of A Down - Hypnotize", "https://i.ytimg.com/vi/LoheCz4t2xc/maxresdefault.jpg", "LoheCz4t2xc", MediaItem.Type.VIDEO),
         MediaItem("Red Hot Chili Peppers - Californication", "https://i.pinimg.com/originals/b0/e5/a8/b0e5a853982347a33455ccfc0a67cecb.jpg", "YlUKcNNmywk", MediaItem.Type.VIDEO),
         MediaItem("En Tol Sarmiento - Ametsetan", "http://entolsarmiento.com/wp-content/uploads/2014/11/portada.jpg", "LtDx3hb-KwI"),
