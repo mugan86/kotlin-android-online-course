@@ -5,41 +5,14 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    tools:context="amldev.kotlinandroidonlinecourse.MainActivity">
+    tools:context="amldev.kotlinandroidonlinecourse.ui.activities.MainActivity">
 
-    <TextView
-        android:id="@+id/text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_horizontal">
-
-        <EditText
-            android:id="@+id/inputValueEditText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="Name to show" />
-
-        <ImageButton
-            android:layout_marginStart="10sp"
-            android:id="@+id/clearTextButton"
-            android:background="?attr/selectableItemBackground"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@android:drawable/ic_delete"
-            android:contentDescription="TODO" />
-    </LinearLayout>
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="2dp"
+        android:padding="10sp"
         android:clipToPadding="false"
         app:layoutManager="GridLayoutManager"
         app:spanCount="2"
