@@ -2,6 +2,7 @@ package amldev.kotlinandroidonlinecourse.ui.holders
 
 import amldev.kotlinandroidonlinecourse.R
 import amldev.kotlinandroidonlinecourse.domain.models.MediaItem
+import amldev.kotlinandroidonlinecourse.extensions.find
 import amldev.kotlinandroidonlinecourse.extensions.loadImageUrl
 import android.support.v7.widget.RecyclerView
 import android.view.View
@@ -14,8 +15,8 @@ import org.jetbrains.anko.toast
  */
 class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
 
-    val imgItem = view.findViewById(R.id.mediaItemImageView) as ImageView
-    val textItem = view.findViewById(R.id.mediaItemTextView) as TextView
+    val imgItem = view.find<ImageView>(R.id.mediaItemImageView)
+    val textItem = view.find<TextView>(R.id.mediaItemTextView)
     //To define select media item layout with data
     fun bind(item: MediaItem) {
         textItem.text = item.title
