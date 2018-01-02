@@ -18,7 +18,6 @@ class MediaAdapter(val items: List<MediaItem>): RecyclerView.Adapter<ViewHolder>
     override fun getItemCount(): Int = items.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.toast("Create ViewHolder to render media items")
         holder.bind(items[position])
     }
 
