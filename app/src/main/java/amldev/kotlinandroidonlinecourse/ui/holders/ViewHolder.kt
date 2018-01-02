@@ -26,7 +26,6 @@ class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
                 MediaItem.Type.AUDIO -> View.VISIBLE
                 MediaItem.Type.VIDEO -> View.GONE
             }
-            setOnClickListener { context.toast("Click in image item ${item.title}") }
         }
 
     }
