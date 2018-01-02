@@ -1,22 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-    android:background="?android:selectableItemBackground"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="2dp">
-
-    <ImageView
-        android:scaleType="centerCrop"
-        android:background="?android:selectableItemBackground"
-        android:id="@+id/mediaItemImageView"
+android:background="?android:selectableItemBackground"
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:orientation="vertical"
+android:padding="2dp">
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        tools:src="@mipmap/ic_launcher"
-        android:contentDescription="TODO" />
-
+        android:layout_height="wrap_content">
+        <ImageView
+            android:scaleType="centerCrop"
+            android:id="@+id/mediaItemImageView"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            tools:src="@mipmap/ic_launcher"/>
+        <ImageView
+            android:id="@+id/videoIndicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            android:src="@drawable/ic_play_circle_outline"
+            tools:visibility="gone"/>
+        <ImageView
+            android:id="@+id/audioIndicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            android:src="@drawable/ic_audiotrack"
+            tools:visibility="visible"/>
+    </FrameLayout>
     <TextView
         android:id="@+id/mediaItemTextView"
         android:layout_width="match_parent"
@@ -26,5 +42,6 @@
         android:textColor="@color/colorPrimary"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium.Inverse"
         tools:text="Title"/>
-
 </LinearLayout>
+
+
