@@ -18,12 +18,12 @@ class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
             mediaItemTextView.text = item.title
             mediaItemImageView.loadImageUrl(item.thumbUrl)
             videoIndicator.visibility = when(item.type) {
-                MediaItem.Type.PHOTO -> View.GONE
+                MediaItem.Type.AUDIO -> View.GONE
                 MediaItem.Type.VIDEO -> View.VISIBLE
             }
 
             audioIndicator.visibility = when(item.type) {
-                MediaItem.Type.PHOTO -> View.VISIBLE
+                MediaItem.Type.AUDIO -> View.VISIBLE
                 MediaItem.Type.VIDEO -> View.GONE
             }
             setOnClickListener { context.toast("Click in image item ${item.title}") }
