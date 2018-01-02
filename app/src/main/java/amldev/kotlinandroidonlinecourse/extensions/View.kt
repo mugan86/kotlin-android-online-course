@@ -10,3 +10,7 @@ import android.view.ViewGroup
 fun ViewGroup.inflate(resource: Int): View {
    return LayoutInflater.from(context).inflate(resource, this, false)
 }
+
+inline fun <reified T: View> View.find(id: Int): T {
+   return findViewById<T>(id)
+}
