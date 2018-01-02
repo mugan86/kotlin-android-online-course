@@ -23,10 +23,6 @@ fun test() {
 
 fun applyOp(x: Int, y: Int, f: (Int, Int)->Int): Int = f(x,y)
 
-interface Callback {
-    fun onCallBack(result: String)
-}
-
 fun doAsync(x: Int, callback: (String) -> Unit) {
-    callback.invoke("finished")
+    callback("finished")
 }
