@@ -17,10 +17,21 @@ class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
 
     val imgItem = view.find<ImageView>(R.id.mediaItemImageView)
     val textItem = view.find<TextView>(R.id.mediaItemTextView)
+    val videoIndicator = view.find<ImageView>(R.id.videoIndicator)
+    val audioIndicator = view.find<ImageView>(R.id.audioIndicator)
     //To define select media item layout with data
     fun bind(item: MediaItem) {
         textItem.text = item.title
         imgItem.loadImageUrl(item.thumbUrl)
+        videoIndicator.visibility = when(item.type) {
+            MediaItem.Type.PHOTO -> View.GONE
+            MediaItem.Type.VIDEO -> View.VISIBLE
+        }
+
+        audioIndicator.visibility = when(item.type) {
+            MediaItem.Type.PHOTO -> View.VISIBLE
+            MediaItem.Type.VIDEO -> View.GONE
+        }
         itemView.setOnClickListener { imgItem.context.toast("Click in image item ${item.title}") }
     }
 }
