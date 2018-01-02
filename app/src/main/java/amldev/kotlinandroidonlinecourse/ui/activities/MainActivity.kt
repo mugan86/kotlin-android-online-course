@@ -24,8 +24,9 @@ class MainActivity : AppCompatActivity(), Logger {
         // 1. set layoutManger
         recycler.layoutManager = LinearLayoutManager(this)
         // 2. create an adapter using GetMedia.kt data (root/data/GetMedia.kt)
-        // Usar lambdas en el Adapter para mostrar lo que se ha declarado en dicha lambda
-        val mAdapter = MediaAdapter(items = getMediaItemsData()) { mediaItem -> toast(mediaItem.title)  }
+        // Usar lambdas en el Adapter para mostrar lo que se ha declarado en dicha lambda (usando
+        // la desestructurando la declaración mediaItem)
+        val mAdapter = MediaAdapter(items = getMediaItemsData()) { (title) -> toast(title)  }
         // 3. set adapter
         recycler.adapter = mAdapter
         // 4. set item animator to DefaultAnimator
