@@ -13,3 +13,7 @@ fun getMediaItemsData() = listOf<MediaItem>(
         MediaItem("Hesian: Zerotik", "https://i.ytimg.com/vi/E2lD-vp7n-I/maxresdefault.jpg", "G5SWPS9po74", MediaItem.Type.AUDIO),
         MediaItem("Rev Theory - Hell Yeah", "https://i.ytimg.com/vi/XGLvPYexRJ4/maxresdefault.jpg", "7LuSP4QaXiQ"),
         MediaItem("Egurra Ta Kitto - Lurrikara", "https://i.ytimg.com/vi/4GQPaMzcCcY/hqdefault.jpg", "cnbXjNiimjs", MediaItem.Type.AUDIO))
+
+private val thumbBase = "http://lorempixel.com/400/400/sports/"
+
+fun getMediaItems() =  (1..12).map { MediaItem("Title $it", "${ thumbBase }$it", "iii", if (it % 3 != 0) MediaItem.Type.VIDEO else MediaItem.Type.AUDIO) }
