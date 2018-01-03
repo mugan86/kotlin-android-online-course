@@ -2,9 +2,11 @@ package amldev.kotlinandroidonlinecourse.ui.activities
 
 import amldev.kotlinandroidonlinecourse.R
 import amldev.kotlinandroidonlinecourse.data.getMediaItemsData
+import amldev.kotlinandroidonlinecourse.domain.models.MediaItem
 import amldev.kotlinandroidonlinecourse.extensions.toast
 import amldev.kotlinandroidonlinecourse.ui.adapters.MediaAdapter
 import amldev.kotlinandroidonlinecourse.ui.interfaces.Logger
+import android.media.browse.MediaBrowser
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.DefaultItemAnimator
@@ -15,6 +17,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), Logger {
 
+    val adapter = MediaAdapter(items = getMediaItemsData()) { (title) -> toast(title)  }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -28,7 +31,7 @@ class MainActivity : AppCompatActivity(), Logger {
         // 2. create an adapter using GetMedia.kt data (root/data/GetMedia.kt)
         // Usar lambdas en el Adapter para mostrar lo que se ha declarado en dicha lambda (usando
         // la desestructurando la declaración mediaItem)
-        val mAdapter = MediaAdapter(items = getMediaItemsData()) { (title) -> toast(title)  }
+        val mAdapter = adapter
         // 3. set adapter
         recycler.adapter = mAdapter
         mAdapter.items = getMediaItemsData()
@@ -44,20 +47,15 @@ class MainActivity : AppCompatActivity(), Logger {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         // Handle item selection
-        when (item.itemId) {
-            R.id.filter_all -> {
-
-                return true
+        adapter.items = getMediaItemsData().let { media ->
+            when (item.itemId) {
+                R.id.filter_all -> media
+                R.id.filter_videos -> media.filter { it.type == MediaItem.Type.VIDEO}
+                R.id.filter_audio -> media.filter { it.type == MediaItem.Type.AUDIO}
+                else -> emptyList()
             }
-            R.id.filter_videos -> {
-
-                return true
-            }
-            R.id.filter_audio -> {
-
-                return true
-            }
-            else -> return super.onOptionsItemSelected(item)
         }
+        return super.onOptionsItemSelected(item)
+
     }
 }
