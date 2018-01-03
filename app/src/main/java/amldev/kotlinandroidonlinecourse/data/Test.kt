@@ -44,3 +44,21 @@ fun collections(items: List<MediaItem>) {
 
     items.forEach { println(it.thumbUrl) }
 }
+
+fun collectionsAndRanges() {
+    for (i in 1..4) print(i) // print 1,2,3,4
+
+    (1..4).forEach(::print) // print 1,2,3,4
+
+    (1 until 4).forEach(::print) // print 1,2,3
+
+    (4 downTo 1).forEach(::print)
+
+    val x: String = "c"
+
+    val y = when(x) {
+        in ("a".."e") -> 1
+        in ("f".."z") -> 2
+        else -> 3
+    }
+}
