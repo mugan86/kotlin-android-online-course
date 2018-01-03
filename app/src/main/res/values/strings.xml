@@ -1,3 +1,9 @@
 <resources>
     <string name="title_activity_main2">Main2Activity</string>
+
+    <!--Menus -->
+    <!-- main_menu.xml-->
+    <string name="filter_all">All content</string>
+    <string name="filter_audio">Audio</string>
+    <string name="filter_video">Video</string>
 </resources>
