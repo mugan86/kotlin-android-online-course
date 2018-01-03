@@ -9,6 +9,8 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
+import android.view.Menu
+import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), Logger {
@@ -32,5 +34,30 @@ class MainActivity : AppCompatActivity(), Logger {
         mAdapter.items = getMediaItemsData()
         // 4. set item animator to DefaultAnimator
         recycler.itemAnimator = DefaultItemAnimator()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        val inflater = menuInflater
+        inflater.inflate(R.menu.main_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        // Handle item selection
+        when (item.itemId) {
+            R.id.filter_all -> {
+
+                return true
+            }
+            R.id.filter_videos -> {
+
+                return true
+            }
+            R.id.filter_audio -> {
+
+                return true
+            }
+            else -> return super.onOptionsItemSelected(item)
+        }
     }
 }
