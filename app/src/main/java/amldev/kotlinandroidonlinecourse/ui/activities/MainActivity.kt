@@ -29,6 +29,7 @@ class MainActivity : AppCompatActivity(), Logger {
         val mAdapter = MediaAdapter(items = getMediaItemsData()) { (title) -> toast(title)  }
         // 3. set adapter
         recycler.adapter = mAdapter
+        mAdapter.items = getMediaItemsData()
         // 4. set item animator to DefaultAnimator
         recycler.itemAnimator = DefaultItemAnimator()
     }
