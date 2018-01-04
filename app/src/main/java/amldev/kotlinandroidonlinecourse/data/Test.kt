@@ -68,3 +68,16 @@ fun infixFunctions() {
 }
 
 infix fun Int.addition(number: Int) = this + number
+
+
+// Tratamiento de nulos
+
+fun nullTest() {
+    val myInt : Int ? = null
+
+    val myLong: Long = myInt?.toLong() ?: 0L
+
+    //Equivalente a myLong
+
+    val myLong2: Long = if (myInt != null) myInt.toLong() else 0L
+}
