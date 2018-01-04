@@ -13,13 +13,15 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
 import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_main.*
+import org.jetbrains.anko.startActivity
 
 class MainActivity : AppCompatActivity(), Logger {
 
     // create an adapter using GetMedia.kt data (root/data/GetMedia.kt)
     // Usar lambdas en el Adapter para mostrar lo que se ha declarado en dicha lambda (usando
     // la desestructurando la declaración mediaItem)
-    val adapter = MediaAdapter { (title) -> toast(title)  }
+    val adapter = MediaAdapter { navigateToDetailItem(it)  }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -58,5 +60,9 @@ class MainActivity : AppCompatActivity(), Logger {
 
 
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun navigateToDetailItem(item: MediaItem) {
+        startActivity<DetailActivity>((DetailActivity.ID to item.id))
     }
 }
