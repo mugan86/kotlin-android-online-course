@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity(), Logger {
     // create an adapter using GetMedia.kt data (root/data/GetMedia.kt)
     // Usar lambdas en el Adapter para mostrar lo que se ha declarado en dicha lambda (usando
     // la desestructurando la declaración mediaItem)
-    val adapter = MediaAdapter(items = MediaProvider.data) { (title) -> toast(title)  }
+    val adapter = MediaAdapter { (title) -> toast(title)  }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -33,7 +33,8 @@ class MainActivity : AppCompatActivity(), Logger {
 
         // 2. set adapter (initialize before in top)
         recycler.adapter = adapter
-        adapter.items = MediaProvider.data
+        MediaProvider.dataAsync {  adapter.items = it }
+
         // 3. set item animator to DefaultAnimator
         recycler.itemAnimator = DefaultItemAnimator()
     }
@@ -45,16 +46,17 @@ class MainActivity : AppCompatActivity(), Logger {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         // Aquí se filtran los cambios según nuestra selección
-        adapter.items = MediaProvider.data.let { media ->
-            //After change, go to first recycler list item
+        MediaProvider.dataAsync { media ->
             recycler.scrollToPosition(0)
-            when (item.itemId) {
+            adapter.items = when (item.itemId) {
                 R.id.filter_all -> media
                 R.id.filter_videos -> media.filter { it.type == MediaItem.Type.VIDEO}
                 R.id.filter_audio -> media.filter { it.type == MediaItem.Type.AUDIO}
                 else -> emptyList()
             }
         }
+
+
         return super.onOptionsItemSelected(item)
     }
 }
