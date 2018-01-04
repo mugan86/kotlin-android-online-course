@@ -1,6 +1,8 @@
 package amldev.kotlinandroidonlinecourse.data
 
 import amldev.kotlinandroidonlinecourse.domain.models.MediaItem
+import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.uiThread
 
 /**
  * Created by anartzmugika on 2/1/18.
@@ -18,6 +20,22 @@ object MediaProvider {
 
     private val thumbBase = "http://lorempixel.com/400/400/sports/"
 
-    val data =  (1..12).map { MediaItem("Title $it", "${ thumbBase }$it", "iii", if (it % 3 != 0) MediaItem.Type.VIDEO else MediaItem.Type.AUDIO) }
+    private var data = emptyList<MediaItem>()
+
+    fun dataAsync(callback: (List<MediaItem>) -> Unit ) {
+       doAsync {
+           if (data.isEmpty()) {
+               Thread.sleep(500) //Medio segundo para ejecutar la asincronia
+               println("Load data....")
+               val items = (1..12).map {
+                   MediaItem("Title $it", "${ thumbBase }$it", "iii", if (it % 3 != 0) MediaItem.Type.VIDEO else MediaItem.Type.AUDIO)
+               }
+               uiThread {
+                   //Cuando tiene los items preparados devuelve mediante el callback los datos que es una lista de MediaItems
+                   callback(items)
+               }
+           }
+       }
+    }
 }
 

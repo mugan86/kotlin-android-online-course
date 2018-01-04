@@ -34,6 +34,8 @@ dependencies {
     implementation "com.android.support:recyclerview-v7:$support_version"
 
     implementation "com.squareup.picasso:picasso:$picasso_version"
+
+    implementation "org.jetbrains.anko:anko-commons:$anko_version"
     testImplementation 'junit:junit:4.12'
 
 }
