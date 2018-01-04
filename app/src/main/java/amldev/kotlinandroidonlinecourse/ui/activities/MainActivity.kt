@@ -1,7 +1,7 @@
 package amldev.kotlinandroidonlinecourse.ui.activities
 
 import amldev.kotlinandroidonlinecourse.R
-import amldev.kotlinandroidonlinecourse.data.getMediaItems
+import amldev.kotlinandroidonlinecourse.data.MediaProvider
 import amldev.kotlinandroidonlinecourse.domain.models.MediaItem
 import amldev.kotlinandroidonlinecourse.extensions.toast
 import amldev.kotlinandroidonlinecourse.ui.adapters.MediaAdapter
@@ -16,7 +16,10 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), Logger {
 
-    val adapter = MediaAdapter(items = getMediaItems()) { (title) -> toast(title)  }
+    // create an adapter using GetMedia.kt data (root/data/GetMedia.kt)
+    // Usar lambdas en el Adapter para mostrar lo que se ha declarado en dicha lambda (usando
+    // la desestructurando la declaración mediaItem)
+    val adapter = MediaAdapter(items = MediaProvider.data) { (title) -> toast(title)  }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -27,25 +30,24 @@ class MainActivity : AppCompatActivity(), Logger {
     private fun loadList() {
         // 1. set layoutManger
         recycler.layoutManager = LinearLayoutManager(this)
-        // 2. create an adapter using GetMedia.kt data (root/data/GetMedia.kt)
-        // Usar lambdas en el Adapter para mostrar lo que se ha declarado en dicha lambda (usando
-        // la desestructurando la declaración mediaItem)
-        // 3. set adapter
+
+        // 2. set adapter (initialize before in top)
         recycler.adapter = adapter
-        adapter.items = getMediaItems()
-        // 4. set item animator to DefaultAnimator
+        adapter.items = MediaProvider.data
+        // 3. set item animator to DefaultAnimator
         recycler.itemAnimator = DefaultItemAnimator()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        val inflater = menuInflater
-        inflater.inflate(R.menu.main_menu, menu)
+        menuInflater.inflate(R.menu.main_menu, menu)
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle item selection
-        adapter.items = getMediaItems().let { media ->
+        // Aquí se filtran los cambios según nuestra selección
+        adapter.items = MediaProvider.data.let { media ->
+            //After change, go to first recycler list item
+            recycler.scrollToPosition(0)
             when (item.itemId) {
                 R.id.filter_all -> media
                 R.id.filter_videos -> media.filter { it.type == MediaItem.Type.VIDEO}
@@ -54,6 +56,5 @@ class MainActivity : AppCompatActivity(), Logger {
             }
         }
         return super.onOptionsItemSelected(item)
-
     }
 }

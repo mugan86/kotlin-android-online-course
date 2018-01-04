@@ -62,3 +62,9 @@ fun collectionsAndRanges() {
         else -> 3
     }
 }
+
+fun infixFunctions() {
+    println (5 addition 5) // = 5 + 5 = 10
+}
+
+infix fun Int.addition(number: Int) = this + number

@@ -5,7 +5,6 @@ import amldev.kotlinandroidonlinecourse.extensions.loadImageUrl
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import kotlinx.android.synthetic.main.view_media_item.view.*
-import org.jetbrains.anko.toast
 
 /**
  * Created by anartzmugika on 1/1/18.
