@@ -15,23 +15,20 @@ android:padding="2dp">
             android:id="@+id/mediaItemImageView"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            tools:src="@mipmap/ic_launcher"/>
+            tools:src="@mipmap/ic_launcher"
+            android:contentDescription="@string/item_image" />
         <ImageView
             android:id="@+id/videoIndicator"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:visibility="gone"
+            style="@style/MediaItemImage"
             android:src="@drawable/ic_play_circle_outline"
-            tools:visibility="gone"/>
+            tools:visibility="gone"
+            android:contentDescription="@string/video_indicator_icon" />
         <ImageView
             android:id="@+id/audioIndicator"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:visibility="gone"
             android:src="@drawable/ic_audiotrack"
-            tools:visibility="visible"/>
+            style="@style/MediaItemImage"
+            tools:visibility="visible"
+            android:contentDescription="@string/audio_indicator_icon" />
     </FrameLayout>
     <TextView
         android:id="@+id/mediaItemTextView"

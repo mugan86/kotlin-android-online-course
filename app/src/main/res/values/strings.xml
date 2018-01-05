@@ -6,4 +6,7 @@
     <string name="filter_all">All content</string>
     <string name="filter_audio">Audio</string>
     <string name="filter_video">Video</string>
+    <string name="item_image">Item Image</string>
+    <string name="video_indicator_icon">Video indicator icon in Media Item</string>
+    <string name="audio_indicator_icon">Audio Indicator con</string>
 </resources>
