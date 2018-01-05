@@ -18,24 +18,30 @@ object MediaProvider {
             MediaItem(5,"Rev Theory - Hell Yeah", "https://i.ytimg.com/vi/XGLvPYexRJ4/maxresdefault.jpg", "7LuSP4QaXiQ"),
             MediaItem(6,"Egurra Ta Kitto - Lurrikara", "https://i.ytimg.com/vi/4GQPaMzcCcY/hqdefault.jpg", "cnbXjNiimjs", MediaItem.Type.AUDIO))
 
-    private val thumbBase = "http://lorempixel.com/400/400/cats/"
+    private val thumbBase = "http://lorempixel.com/400/400/"
 
     private var data = emptyList<MediaItem>()
 
-    fun dataAsync(callback: (List<MediaItem>) -> Unit ) {
+    // Para devolver de manera asíncrona
+    fun dataAsync(dataType: String, callback: (List<MediaItem>) -> Unit ) {
        doAsync {
            if (data.isEmpty()) {
-               Thread.sleep(500) //Medio segundo para ejecutar la asincronia
-               println("Load data....")
-               val items = (1..10).map {
-                   MediaItem(it, "Title $it", "${ thumbBase }$it", "iii", if (it % 3 != 0) MediaItem.Type.VIDEO else MediaItem.Type.AUDIO)
-               }
-               uiThread {
-                   //Cuando tiene los items preparados devuelve mediante el callback los datos que es una lista de MediaItems
-                   callback(items)
-               }
+               data = dataSync(dataType)
+           }
+           uiThread {
+               //Cuando tiene los items preparados devuelve mediante el callback los datos que es una lista de MediaItems
+               callback(data)
            }
        }
+    }
+
+    // Para devolver los datos de manera síncrona (La que usamos)
+    fun dataSync(dataType: String): List<MediaItem> {
+        Thread.sleep(500) //Medio segundo para ejecutar la asincronia
+        println("Load data....")
+        return (1..10).map {
+            MediaItem(it, "Title $it", "$thumbBase/$dataType/$it", "iii", if (it % 3 != 0) MediaItem.Type.VIDEO else MediaItem.Type.AUDIO)
+        }
     }
 }
 
