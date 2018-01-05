@@ -8,7 +8,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        tools:src="@mipmap/ic_launcher"/>
+        tools:src="@mipmap/ic_launcher"
+        android:contentDescription="TODO" />
     <ImageView
         android:id="@+id/detail_video_indicator"
         android:layout_width="wrap_content"
@@ -16,5 +17,6 @@
         android:layout_gravity="center"
         android:visibility="gone"
         android:src="@drawable/ic_play_circle_outline"
-        tools:visibility="visible"/>
+        tools:visibility="visible"
+        android:contentDescription="TODO" />
 </FrameLayout>
