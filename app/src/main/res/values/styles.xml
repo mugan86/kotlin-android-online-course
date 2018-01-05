@@ -17,4 +17,11 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="MediaItemImage">
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_height">72sp</item>
+        <item name="android:layout_width">72sp</item>
+        <item name="android:visibility">gone</item>
+    </style>
+
 </resources>
