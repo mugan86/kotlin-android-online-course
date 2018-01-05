@@ -21,11 +21,11 @@ class DetailActivity : AppCompatActivity() {
         val id = intent.getIntExtra(ID, -1)
 
         MediaProvider.dataAsync { media ->
-            media.find { it.id == id }?.let { item ->
+            media.find { it.id == id }?.let { (_, title, thumbUrl, _, type) ->
                 // Al ser @Nullable tenemos que añadirle "?"
-                supportActionBar?.title = item.title
-                detail_thumb.loadImageUrl(item.thumbUrl)
-                detail_video_indicator.visibility = when (item.type) {
+                supportActionBar?.title = title
+                detail_thumb.loadImageUrl(thumbUrl)
+                detail_video_indicator.visibility = when (type) {
                     MediaItem.Type.AUDIO -> View.GONE
                     MediaItem.Type.VIDEO -> View.VISIBLE
                 }
