@@ -8,6 +8,9 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import kotlinx.android.synthetic.main.activity_detail.*
+import kotlinx.coroutines.experimental.android.UI
+import kotlinx.coroutines.experimental.async
+import org.jetbrains.anko.coroutines.experimental.bg
 
 class DetailActivity : AppCompatActivity() {
 
@@ -20,7 +23,23 @@ class DetailActivity : AppCompatActivity() {
 
         val id = intent.getIntExtra(ID, -1)
 
-        MediaProvider.dataAsync { media ->
+        //Apply Coroutines
+        async(UI) {
+            val cats = bg {MediaProvider.dataSync("cats")}
+            val nature = bg {MediaProvider.dataSync( "nature")}
+            cats.await().find { it.id == id }?.let { it ->
+                // Al ser @Nullable tenemos que añadirle "?"
+                supportActionBar?.title = it.title
+                detail_thumb.loadImageUrl(it.thumbUrl)
+                detail_video_indicator.visibility = when (it.type) {
+                    MediaItem.Type.AUDIO -> View.GONE
+                    MediaItem.Type.VIDEO -> View.VISIBLE
+                }
+            }
+        }
+
+        // Without use coroutines
+        /*MediaProvider.dataAsync { media ->
             media.find { it.id == id }?.let { (_, title, thumbUrl, _, type) ->
                 // Al ser @Nullable tenemos que añadirle "?"
                 supportActionBar?.title = title
@@ -30,6 +49,6 @@ class DetailActivity : AppCompatActivity() {
                     MediaItem.Type.VIDEO -> View.VISIBLE
                 }
             }
-        }
+        }*/
     }
 }
