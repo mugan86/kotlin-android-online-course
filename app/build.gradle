@@ -35,7 +35,7 @@ dependencies {
 
     implementation "com.squareup.picasso:picasso:$picasso_version"
 
-    implementation "org.jetbrains.anko:anko-commons:$anko_version"
+    implementation "org.jetbrains.anko:anko-common:$anko_version"
     implementation "org.jetbrains.anko:anko-coroutines:$anko_version"
 
     testImplementation 'junit:junit:4.12'
