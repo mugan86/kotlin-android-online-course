@@ -18,7 +18,7 @@ object MediaProvider {
             MediaItem(5,"Rev Theory - Hell Yeah", "https://i.ytimg.com/vi/XGLvPYexRJ4/maxresdefault.jpg", "7LuSP4QaXiQ"),
             MediaItem(6,"Egurra Ta Kitto - Lurrikara", "https://i.ytimg.com/vi/4GQPaMzcCcY/hqdefault.jpg", "cnbXjNiimjs", MediaItem.Type.AUDIO))
 
-    private val thumbBase = "http://lorempixel.com/400/400/sports/"
+    private val thumbBase = "http://lorempixel.com/400/400/cats/"
 
     private var data = emptyList<MediaItem>()
 
@@ -27,7 +27,7 @@ object MediaProvider {
            if (data.isEmpty()) {
                Thread.sleep(500) //Medio segundo para ejecutar la asincronia
                println("Load data....")
-               val items = (1..12).map {
+               val items = (1..10).map {
                    MediaItem(it, "Title $it", "${ thumbBase }$it", "iii", if (it % 3 != 0) MediaItem.Type.VIDEO else MediaItem.Type.AUDIO)
                }
                uiThread {
