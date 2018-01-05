@@ -81,3 +81,12 @@ fun nullTest() {
 
     val myLong2: Long = if (myInt != null) myInt.toLong() else 0L
 }
+
+//Sealed classes (clase selladas). Para crear clases con subclases
+
+sealed class Operation {
+    class Add(val value: Int): Operation()
+    class Subtract(val value: Int): Operation()
+    class Multiply(val value: Int): Operation()
+    class Divide(val value: Int): Operation()
+}
