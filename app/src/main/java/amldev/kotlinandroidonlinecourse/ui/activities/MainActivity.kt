@@ -4,7 +4,6 @@ import amldev.kotlinandroidonlinecourse.R
 import amldev.kotlinandroidonlinecourse.data.Filter
 import amldev.kotlinandroidonlinecourse.data.MediaProvider
 import amldev.kotlinandroidonlinecourse.domain.models.MediaItem
-import amldev.kotlinandroidonlinecourse.extensions.toast
 import amldev.kotlinandroidonlinecourse.ui.adapters.MediaAdapter
 import amldev.kotlinandroidonlinecourse.ui.interfaces.Logger
 import android.os.Bundle
@@ -13,6 +12,9 @@ import android.support.v7.widget.DefaultItemAnimator
 import android.view.Menu
 import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.coroutines.experimental.android.UI
+import kotlinx.coroutines.experimental.async
+import org.jetbrains.anko.coroutines.experimental.bg
 import org.jetbrains.anko.startActivity
 
 class MainActivity : AppCompatActivity(), Logger {
@@ -25,7 +27,6 @@ class MainActivity : AppCompatActivity(), Logger {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        toast("Load Media Items!!")
         loadList()
     }
 
@@ -33,11 +34,13 @@ class MainActivity : AppCompatActivity(), Logger {
 
         // 1. set adapter (initialize before in top)
         recycler.adapter = adapter
-        MediaProvider.dataAsync {  adapter.items = it }
 
         // 2. set item animator to DefaultAnimator
         recycler.itemAnimator = DefaultItemAnimator()
+
+        loadFilterData(Filter.None())
     }
+
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.main_menu, menu)
@@ -62,11 +65,14 @@ class MainActivity : AppCompatActivity(), Logger {
 
     private fun loadFilterData(filter: Filter) {
         // Aquí se filtran los cambios según nuestra selección
-        MediaProvider.dataAsync { media ->
+
+        async(UI) {
+            val cats = bg {MediaProvider.dataSync("cats")}
+            val nature = bg {MediaProvider.dataSync( "nature")}
             recycler.scrollToPosition(0)
             adapter.items = when (filter) {
-                is Filter.None -> media
-                is Filter.ByType -> media.filter { it.type == filter.type }
+                is Filter.None -> cats.await() + nature.await()
+                is Filter.ByType -> (cats.await() + nature.await()).filter { it.type == filter.type }
             }
         }
     }
