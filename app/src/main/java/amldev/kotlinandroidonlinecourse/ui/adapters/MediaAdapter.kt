@@ -14,7 +14,10 @@ import kotlin.properties.Delegates
  * Recibe un listado de items para mostrarlo
  */
 
-class MediaAdapter(items: List<MediaItem> = emptyList(), val listener: (MediaItem) -> Unit): RecyclerView.Adapter<ViewHolder>(), Logger {
+//Para hacer nuestros tipos de variables más legibles en el código
+typealias Listener = (MediaItem) -> Unit
+
+class MediaAdapter(items: List<MediaItem> = emptyList(), val listener: Listener): RecyclerView.Adapter<ViewHolder>(), Logger {
 
     // Para ejercicio observable, cuando cambie llamar al notifyDataSetChanged
     //Iniciar con los valores iniciales pasados desde MainActivity
