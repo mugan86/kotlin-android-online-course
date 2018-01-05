@@ -1,6 +1,7 @@
 package amldev.kotlinandroidonlinecourse.ui.activities
 
 import amldev.kotlinandroidonlinecourse.R
+import amldev.kotlinandroidonlinecourse.data.Filter
 import amldev.kotlinandroidonlinecourse.data.MediaProvider
 import amldev.kotlinandroidonlinecourse.domain.models.MediaItem
 import amldev.kotlinandroidonlinecourse.extensions.toast
@@ -44,19 +45,30 @@ class MainActivity : AppCompatActivity(), Logger {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        // Aquí se filtran los cambios según nuestra selección
+        val filter: Filter = when (item.itemId) {
+            R.id.filter_all -> Filter.None()
+            R.id.filter_videos -> Filter.ByType(MediaItem.Type.VIDEO)
+            R.id.filter_audio -> Filter.ByType(MediaItem.Type.AUDIO)
+            else -> Filter.None()
+        }
+
+        // Cargar los datos teniendo en cuenta el filtro
+        loadFilterData(filter)
+
+        return super.onOptionsItemSelected(item)
+    }
+
+    private fun loadFilterData(filter: Filter) {
         // Aquí se filtran los cambios según nuestra selección
         MediaProvider.dataAsync { media ->
             recycler.scrollToPosition(0)
-            adapter.items = when (item.itemId) {
-                R.id.filter_all -> media
-                R.id.filter_videos -> media.filter { it.type == MediaItem.Type.VIDEO}
-                R.id.filter_audio -> media.filter { it.type == MediaItem.Type.AUDIO}
-                else -> emptyList()
+            adapter.items = when (filter) {
+                is Filter.None -> media
+                is Filter.ByType -> media.filter { it.type == filter.type }
             }
         }
-
-
-        return super.onOptionsItemSelected(item)
     }
 
     private fun navigateToDetailItem(item: MediaItem) {
