@@ -9,7 +9,6 @@ import amldev.kotlinandroidonlinecourse.ui.interfaces.Logger
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.DefaultItemAnimator
-import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
 import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_main.*
@@ -30,14 +29,12 @@ class MainActivity : AppCompatActivity(), Logger {
     }
 
     private fun loadList() {
-        // 1. set layoutManger
-        recycler.layoutManager = LinearLayoutManager(this)
 
-        // 2. set adapter (initialize before in top)
+        // 1. set adapter (initialize before in top)
         recycler.adapter = adapter
         MediaProvider.dataAsync {  adapter.items = it }
 
-        // 3. set item animator to DefaultAnimator
+        // 2. set item animator to DefaultAnimator
         recycler.itemAnimator = DefaultItemAnimator()
     }
 
