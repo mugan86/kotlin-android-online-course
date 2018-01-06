@@ -26,7 +26,6 @@ class DetailActivity : AppCompatActivity() {
         //Apply Coroutines
         async(UI) {
             val cats = bg {MediaProvider.dataSync("cats")}
-            val nature = bg {MediaProvider.dataSync( "nature")}
             cats.await().find { it.id == id }?.let { it ->
                 // Al ser @Nullable tenemos que añadirle "?"
                 supportActionBar?.title = it.title
