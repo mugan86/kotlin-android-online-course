@@ -1,7 +1,8 @@
 package amldev.kotlinandroidonlinecourse.ui.activities.detail
 
-import amldev.kotlinandroidonlinecourse.data.Provider
 import amldev.kotlinandroidonlinecourse.domain.models.MediaItem
+import amldev.kotlinandroidonlinecourse.ui.interfaces.Provider
+
 
 /**
  * Created by anartzmugika on 8/1/18.
