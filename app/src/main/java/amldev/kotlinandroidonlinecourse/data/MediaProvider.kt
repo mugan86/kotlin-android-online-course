@@ -7,8 +7,18 @@ import org.jetbrains.anko.uiThread
 /**
  * Created by anartzmugika on 2/1/18.
  */
+interface Provider {
+    fun dataAsync(f: (List<MediaItem>) -> Unit)
+}
 
-object MediaProvider {
+object MediaProvider: Provider {
+    override fun dataAsync(f: (List<MediaItem>) -> Unit) {
+        doAsync {
+            if (data.isEmpty()) data = dataSync("cats")
+            uiThread { f(data) }
+        }
+    }
+
     // 1. Initialize Media Items
     fun getMediaItemsData() = listOf<MediaItem>(
             MediaItem(1,"System Of A Down - Hypnotize", "https://i.ytimg.com/vi/LoheCz4t2xc/maxresdefault.jpg", "LoheCz4t2xc", MediaItem.Type.VIDEO),
