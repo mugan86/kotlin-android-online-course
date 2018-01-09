@@ -1,5 +1,6 @@
 package amldev.kotlinandroidonlinecourse.extensions
 
+import amldev.kotlinandroidonlinecourse.App
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
@@ -19,3 +20,7 @@ import android.content.Intent
 inline fun <reified T: Activity> Context.startActivity() {
     startActivity(Intent(this, T::class.java))
 }
+
+
+val Activity.app: App
+    get() = application as App

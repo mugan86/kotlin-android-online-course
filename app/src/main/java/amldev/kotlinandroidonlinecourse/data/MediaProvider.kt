@@ -1,14 +1,26 @@
 package amldev.kotlinandroidonlinecourse.data
 
 import amldev.kotlinandroidonlinecourse.domain.models.MediaItem
+import amldev.kotlinandroidonlinecourse.extensions.ListenerMediaItems
+import amldev.kotlinandroidonlinecourse.ui.interfaces.Provider
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 
-/**
+/******************************************************************************
  * Created by anartzmugika on 2/1/18.
- */
+ ******************************************************************************/
 
-object MediaProvider {
+
+
+object MediaProvider: Provider {
+    // Para devolver de manera asíncrona
+    override fun dataAsync(f: ListenerMediaItems) {
+        doAsync {
+            if (data.isEmpty()) data = dataSync("cats")
+            uiThread { f(data) }
+        }
+    }
+
     // 1. Initialize Media Items
     fun getMediaItemsData() = listOf<MediaItem>(
             MediaItem(1,"System Of A Down - Hypnotize", "https://i.ytimg.com/vi/LoheCz4t2xc/maxresdefault.jpg", "LoheCz4t2xc", MediaItem.Type.VIDEO),
@@ -21,19 +33,6 @@ object MediaProvider {
     private val thumbBase = "http://lorempixel.com/400/400/"
 
     private var data = emptyList<MediaItem>()
-
-    // Para devolver de manera asíncrona
-    fun dataAsync(dataType: String, callback: (List<MediaItem>) -> Unit ) {
-       doAsync {
-           if (data.isEmpty()) {
-               data = dataSync(dataType)
-           }
-           uiThread {
-               //Cuando tiene los items preparados devuelve mediante el callback los datos que es una lista de MediaItems
-               callback(data)
-           }
-       }
-    }
 
     // Para devolver los datos de manera síncrona (La que usamos)
     fun dataSync(dataType: String): List<MediaItem> {

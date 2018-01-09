@@ -14,3 +14,7 @@ fun ViewGroup.inflate(resource: Int): View {
 inline fun <reified T: View> View.find(id: Int): T {
    return findViewById<T>(id)
 }
+
+fun View.show() = run { visibility = View.VISIBLE }
+
+fun View.hide() = run { visibility = View.GONE }

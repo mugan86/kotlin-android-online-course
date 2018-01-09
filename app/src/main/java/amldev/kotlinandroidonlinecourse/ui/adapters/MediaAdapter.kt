@@ -2,6 +2,7 @@ package amldev.kotlinandroidonlinecourse.ui.adapters
 
 import amldev.kotlinandroidonlinecourse.R
 import amldev.kotlinandroidonlinecourse.domain.models.MediaItem
+import amldev.kotlinandroidonlinecourse.extensions.ListenerMediaItem
 import amldev.kotlinandroidonlinecourse.extensions.inflate
 import amldev.kotlinandroidonlinecourse.ui.holders.ViewHolder
 import amldev.kotlinandroidonlinecourse.ui.interfaces.Logger
@@ -14,10 +15,8 @@ import kotlin.properties.Delegates
  * Recibe un listado de items para mostrarlo
  */
 
-//Para hacer nuestros tipos de variables más legibles en el código
-typealias Listener = (MediaItem) -> Unit
 
-class MediaAdapter(items: List<MediaItem> = emptyList(), val listener: Listener): RecyclerView.Adapter<ViewHolder>(), Logger {
+class MediaAdapter(items: List<MediaItem> = emptyList(), val listener: ListenerMediaItem): RecyclerView.Adapter<ViewHolder>(), Logger {
 
     // Para ejercicio observable, cuando cambie llamar al notifyDataSetChanged
     //Iniciar con los valores iniciales pasados desde MainActivity
