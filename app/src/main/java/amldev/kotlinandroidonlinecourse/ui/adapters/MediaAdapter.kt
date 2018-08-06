@@ -20,9 +20,9 @@ class MediaAdapter(items: List<MediaItem> = emptyList(), val listener: ListenerM
 
     // Para ejercicio observable, cuando cambie llamar al notifyDataSetChanged
     //Iniciar con los valores iniciales pasados desde MainActivity
-    var items: List<MediaItem> by Delegates.observable(items, { _, _, _ ->
+    var items: List<MediaItem> by Delegates.observable(items) { _, _, _ ->
         notifyDataSetChanged()
-    })
+    }
 
     override fun getItemCount(): Int = items.size
 

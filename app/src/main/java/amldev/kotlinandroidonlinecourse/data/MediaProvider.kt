@@ -3,6 +3,7 @@ package amldev.kotlinandroidonlinecourse.data
 import amldev.kotlinandroidonlinecourse.domain.models.MediaItem
 import amldev.kotlinandroidonlinecourse.extensions.ListenerMediaItems
 import amldev.kotlinandroidonlinecourse.ui.interfaces.Provider
+
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 
@@ -16,7 +17,7 @@ object MediaProvider: Provider {
     // Para devolver de manera asíncrona
     override fun dataAsync(f: ListenerMediaItems) {
         doAsync {
-            if (data.isEmpty()) data = dataSync("cats")
+            if (data.isEmpty()) data =  getMediaItemsData()// dataSync("sports")
             uiThread { f(data) }
         }
     }
@@ -35,7 +36,7 @@ object MediaProvider: Provider {
     private var data = emptyList<MediaItem>()
 
     // Para devolver los datos de manera síncrona (La que usamos)
-    fun dataSync(dataType: String): List<MediaItem> {
+    private fun dataSync(dataType: String): List<MediaItem> {
         Thread.sleep(500) //Medio segundo para ejecutar la asincronia
         println("Load data....")
         return (1..10).map {
